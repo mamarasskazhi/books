@@ -1,3 +1,0 @@
-
-window.Site=(()=>{function toast(msg){let t=document.querySelector('.toast');if(!t){t=document.createElement('div');t.className='toast';document.body.appendChild(t)}t.textContent=msg;t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(()=>t.classList.remove('show'),2100)}
-function confetti(){const cs=['#f5bd3f','#9fddd6','#ff8175','#d9cffb','#fff'];for(let i=0;i<32;i++){const c=document.createElement('i');c.className='confetti';c.style.left=(18+Math.random()*64)+'vw';c.style.top=(8+Math.random()*18)+'vh';c.style.background=cs[i%cs.length];c.style.animationDelay=(Math.random()*.22)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),1550)}}return{toast,win:(m)=>{confetti();toast(m||'Готово! ✦')}}})();
