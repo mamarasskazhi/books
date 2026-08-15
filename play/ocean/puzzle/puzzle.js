@@ -1,7 +1,0 @@
-
-const board=document.querySelector('#board'),preview=document.querySelector('#preview'),finish=document.querySelector('#finishCard');let order=[],selected=null;
-function shuffled(){let a=[0,1,2,3,4,5,6,7];do{for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}while(a.every((v,i)=>v===i));return a}
-function render(){board.innerHTML='';order.forEach((pieceIndex,pos)=>{const d=document.createElement('button');d.className='piece';d.dataset.pos=pos;const col=pieceIndex%4,row=Math.floor(pieceIndex/4);d.style.backgroundImage="url('ocean-puzzle.svg')";d.style.backgroundSize='400% 200%';d.style.backgroundPosition=`${(col/3)*100}% ${row*100}%`;if(selected===pos)d.classList.add('selected');if(pieceIndex===pos)d.classList.add('correct');board.appendChild(d)})}
-function reset(){order=shuffled();selected=null;finish.classList.remove('show');render()}
-board.addEventListener('click',e=>{const p=e.target.closest('.piece');if(!p)return;const pos=+p.dataset.pos;if(selected===null){selected=pos;render();return}if(selected===pos){selected=null;render();return}[order[selected],order[pos]]=[order[pos],order[selected]];selected=null;render();if(order.every((v,i)=>v===i)){finish.classList.add('show');Site.win('Пазл собран! ✦')}});
-document.querySelector('#shuffle').onclick=reset;let show=false;document.querySelector('#hint').onclick=()=>{show=!show;preview.style.opacity=show?'1':'.16';document.querySelector('#hint').textContent=show?'Спрятать картинку':'Показать картинку'};reset();
